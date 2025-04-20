@@ -2,7 +2,7 @@ from mesa import Agent
 
 class SchellingAgent(Agent):
     ## Initiate agent instance, inherit model trait from parent class
-    def __init__(self, model, agent_type, lower_threshold, upper_threshold, moving_cost):
+    def __init__(self, model, agent_type, lower_threshold, upper_threshold):
         super().__init__(model)
         ## Set agent type
         self.type = agent_type

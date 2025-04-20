@@ -87,16 +87,7 @@ model_params = {
         "min": 0,
         "max": 1,
         "step": 0.01,
-    },
-    # New moving-cost parameter
-    "moving_cost": {
-        "type": "SliderFloat",
-        "value": 0.1,
-        "label": "Moving Cost",
-        "min": 0,
-        "max": 1,
-        "step": 0.01,
-    },
+    }
 
 }
 schelling_model = SchellingModel()

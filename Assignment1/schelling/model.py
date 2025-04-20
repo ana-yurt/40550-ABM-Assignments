@@ -9,7 +9,6 @@ class SchellingModel(Model):
         group_one_share=0.7,
         tolerance_mean=0.5,
         tolerance_std=0.1,
-        moving_cost=0.05,
         tolerance_upper=0.9,
         radius=1,
         seed=None,
@@ -25,7 +24,6 @@ class SchellingModel(Model):
         self.tolerance_mean = tolerance_mean
         self.tolerance_std = tolerance_std
         self.tolerance_upper = tolerance_upper
-        self.moving_cost = moving_cost
         self.grid = SingleGrid(width, height, torus = True)
         self.happy = 0
         ## Define data collector, to collect happy agents and share of agents currently happy
@@ -56,7 +54,6 @@ class SchellingModel(Model):
                     agent_type=agent_type,
                     lower_threshold=tolerance,
                     upper_threshold=upper,
-                    moving_cost=self.moving_cost,
                 )
                 self.grid.place_agent(a, pos)
 
