@@ -4,9 +4,10 @@ from mesa.space import MultiGrid
 from mesa.datacollection import DataCollector
 from agents import EthnicAgent
 from collections import deque
-
+import os
 
 class EthnicViolenceModel(Model):
+
     def __init__(self, width=60, height=60, majority_pct=0.7, density=0.6,
                  alpha=0.2, beta=0.05, decay=0.8, vision=2, aversion=0.1):
         super().__init__()
@@ -33,8 +34,7 @@ class EthnicViolenceModel(Model):
         chosen = pos[:n]
 
         self.agent_list = []
-        # set random seed
-        self.random.seed(42)
+
         for uid, p in enumerate(chosen):
             eth   = "majority" if self.random.random() < majority_pct else "minority"
             g0    = self.random.random() * 0.2 # grievance in [0, 0.2]
@@ -50,8 +50,8 @@ class EthnicViolenceModel(Model):
                                       / max(1, sum(1 for a in m.agent_list if a.ethnicity=="minority")),
             "Avg_Maj_Threshold":   lambda m: sum(a.violence_threshold for a in m.agent_list if a.ethnicity=="majority")
                                       / max(1, sum(1 for a in m.agent_list if a.ethnicity=="majority")),
-            "Overall_Violence_Level": lambda m: (
-                                        sum(i == "violent" for logs in m.interactions_log.values() for i in logs) /
+            "Overall_Hosility_Level": lambda m: (
+                                        sum(i == "hostile" for logs in m.interactions_log.values() for i in logs) /
                                         max(1, sum(len(logs) for logs in m.interactions_log.values()))
                                     )
         })

@@ -40,7 +40,7 @@ class EthnicAgent(Agent):
         sum_g      = self.grievance + partner.grievance
         p_violence = min(sum_g / 2, 1.0)
         if random.random() < p_violence:
-            interaction = "violent"
+            interaction = "hostile"
             self.grievance    = min(self.grievance    + self.model.alpha, 1)
             partner.grievance = min(partner.grievance + self.model.alpha, 1)
         else:
@@ -59,7 +59,7 @@ class EthnicAgent(Agent):
 
         # majority updates threshold from personal memory
         if self.ethnicity == "majority" and self.memory:
-            v = self.memory.count("violent") / len(self.memory)
+            v = self.memory.count("hostile") / len(self.memory)
             n = self.memory.count("neutral") / len(self.memory)
             delta = -self.model.alpha * v * self.violence_threshold \
                     + self.model.beta  * n * (1 - self.violence_threshold)
@@ -76,7 +76,7 @@ class EthnicAgent(Agent):
         # score each candidate by cell‐level violence log
         candidates = [self.pos] + empty
         def violence_score(cell):
-            return sum(1 for i in self.model.interactions_log.get(cell, []) if i == "violent")
+            return sum(1 for i in self.model.interactions_log.get(cell, []) if i == "hostile")
         best = min(candidates, key=violence_score)
 
         # move toward most peaceful with prob aversion, else random

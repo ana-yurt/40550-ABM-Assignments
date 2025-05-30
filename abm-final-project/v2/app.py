@@ -5,14 +5,14 @@ def agent_portrayal(agent):
     return {"color":"red" if agent.ethnicity=="majority" else "blue","marker":"s","size":2}
 
 model_params = {
-    "width":        Slider("Grid Width",    60,20,300,1),
-    "height":       Slider("Grid Height",   60,20,300,1),
+    "width":        Slider("Grid Width",    80,20,300,1),
+    "height":       Slider("Grid Height",   80,20,300,1),
     "majority_pct": Slider("Majority %",    0.7,0.0,1.0,0.01),
-    "density":      Slider("Density",       0.6,0.0,1.0,0.01),
+    "density":      Slider("Density",       0.7,0.0,1.0,0.01),
     "alpha":        Slider("Alpha",         0.2,0.0,0.5,0.01),
     "beta":         Slider("Beta",          0.05,0.0,0.5,0.01),
-    "decay":        Slider("Decay",         0.8,0.7,1.0,0.01),
-    "vision":       Slider("Vision",        2,  1,  5,  1),
+    "decay":        Slider("Decay",         0.9,0.7,1.0,0.01),
+    "vision":       Slider("Vision",        1,  1,  5,  1),
 }
 
 # pull defaults
@@ -24,7 +24,7 @@ SpaceGraph = make_space_component(agent_portrayal=agent_portrayal)
 MajPlot    = make_plot_component("Avg_Maj_Grievance")
 MinPlot    = make_plot_component("Avg_Min_Grievance")
 ThrPlot    = make_plot_component("Avg_Maj_Threshold")
-VioPlot = make_plot_component("Overall_Violence_Level")
+VioPlot = make_plot_component("Overall_Hosility_Level")
 
 # chart options to force one tick per x-step and show data‐labels
 chart_options = {
